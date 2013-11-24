@@ -1,0 +1,10 @@
+name: Explosion Man
+main: com.gmail.bunnehrealm.explosionman.MainClass
+version: 1.2
+description: >
+            Explosion Man Commands!
+commands:
+  explode:
+    description: Creates an Explosion! Usage - /explode [Power]
+  fexplode:
+    description: Creates an Explosion where you are looking! Usage - /fexplode [power]

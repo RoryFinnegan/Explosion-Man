@@ -1,0 +1,26 @@
+#Default power of /explode
+explodepower: 4
+#Max amount of power until explosionman.explodebig
+explodebigpower: 50
+#Default amount for /fexplode
+fexplodepower: 4
+#Max amount of power until explosionman.fexplodebig
+fexplodebigpower: 50
+#Item used for the Boomstick
+item: 280
+#Power of the Boomstick
+boompower: 4
+#Power of explosion on death if player has explosionman.deathexplode
+deathpower: 4
+#Sets if there should be an explode message
+explodemsg: False
+#What should the explode message be
+explodetext: "Insert Message here"
+#Sets if there should be an fexplode message
+fexplodemsg: False
+#What should the fexplode message be
+fexplodetext: "Insert Message here"
+#Sets if there should be a boomstick message
+boomstickmsg: False
+#What should the boomstick message be
+boomsticktext: "Insert Message here"
