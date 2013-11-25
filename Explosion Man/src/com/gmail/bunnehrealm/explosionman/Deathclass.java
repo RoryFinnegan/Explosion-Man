@@ -33,6 +33,11 @@ public class Deathclass implements Listener {
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e){
 		Player player = e.getEntity();
+		if(player.hasPermission("explosionman.deathlightning")){
+			Location pLocation = player.getLocation();
+			World world = player.getWorld();
+			world.strikeLightningEffect(pLocation);
+		}
 		if(player.hasPermission("explosionman.deathexplode")){
 			@SuppressWarnings("unused")
 			boolean willdie = MainClass.getConfig().getBoolean("death");
@@ -40,10 +45,8 @@ public class Deathclass implements Listener {
 				Location pLocation = player.getLocation();
 				World world = player.getWorld();
 				world.createExplosion(pLocation, MainClass.getConfig().getInt("deathpower"));
-				if(player.hasPermission("explosionman.deathlightning")){
-					world.strikeLightningEffect(pLocation);
 				}
-			}
+			
 		}
 	}
 
