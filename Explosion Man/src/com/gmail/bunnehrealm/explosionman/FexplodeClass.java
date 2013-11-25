@@ -1,11 +1,6 @@
 
 /*Explosion Man for general explosions on Bukkit
     Copyright (C) 2013  Rory Finnegan
-=======
-/*Explosion Man
-    Copyright (C) 2013  Rory Finnegan(malandrix_bunny)
->>>>>>> 8615884e499382adfb0ce700a3c1f72886305112
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
