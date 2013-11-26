@@ -24,3 +24,12 @@ fexplodetext: "Insert Message here"
 boomstickmsg: False
 #What should the boomstick message be
 boomsticktext: "Insert Message here"
+#What should the default power of the launch explosion be
+launchpower: 4
+#What should the height of the launch be (WARNING: Normal jump of a player is around 0.5)
+#MAXIMUM OF 10.0
+launchheight: 4
+#Should there be a message on launch?
+launchmsg: False
+#What should the launch message be
+launchtxt: "Insert Message here"

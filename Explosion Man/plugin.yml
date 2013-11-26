@@ -8,3 +8,5 @@ commands:
     description: Creates an Explosion! Usage - /explode [Power]
   fexplode:
     description: Creates an Explosion where you are looking! Usage - /fexplode [power]
+  launch:
+    description: Creates an explosion and shoots you in the air! Usage - /launch [power]

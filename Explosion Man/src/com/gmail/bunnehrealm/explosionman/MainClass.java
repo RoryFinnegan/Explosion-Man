@@ -25,6 +25,7 @@ public class MainClass extends JavaPlugin{
 	public Deathclass deathListen = new Deathclass(this);
 	public Explodecmd explodeCmd = new Explodecmd(this);
 	public FexplodeClass fexplodeCmd = new FexplodeClass(this);
+	public LaunchClass launchCmd = new LaunchClass(this);
  @Override
  public void onDisable(){
 	 getLogger().info("Explosion Man has been DISABLED!");
@@ -42,5 +43,6 @@ public class MainClass extends JavaPlugin{
 	 
 	 getCommand("explode").setExecutor(explodeCmd);
 	 getCommand("fexplode").setExecutor(fexplodeCmd);
+	 getCommand("launch").setExecutor(launchCmd);
  }
 }
