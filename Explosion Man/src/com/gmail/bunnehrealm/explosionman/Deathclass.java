@@ -31,6 +31,7 @@ public class Deathclass implements Listener {
 		this.MainClass = MainClass;
 	}
 	@EventHandler
+	//Captures when a player dies
 	public void onDeath(PlayerDeathEvent e){
 		Player player = e.getEntity();
 		if(player.hasPermission("explosionman.deathlightning")){
