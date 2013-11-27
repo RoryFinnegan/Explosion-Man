@@ -40,7 +40,7 @@ public class LaunchClass implements CommandExecutor {
 		Location pLocation = player.getLocation();
 		World w = player.getWorld();
 		if (string.equalsIgnoreCase("Launch")) {
-			if (player.hasPermission("explosionman.launch")) {
+			if (player.hasPermission("explosionman.launch") || player.isOp()) {
 				if (args.length == 0) {
 					w.createExplosion(pLocation,
 							MainClass.getConfig().getInt("launchpower"));

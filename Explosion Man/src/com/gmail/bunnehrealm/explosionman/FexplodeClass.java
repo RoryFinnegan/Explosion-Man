@@ -41,7 +41,7 @@ public class FexplodeClass implements CommandExecutor {
 		Player player = (Player) cs;
 		World w = Bukkit.getServer().getWorld("World");
 		if (string.equalsIgnoreCase("fexplode")) {
-			if (player.hasPermission("explosionman.fexplode")) {
+			if (player.hasPermission("explosionman.fexplode") || player.isOp()) {
 				@SuppressWarnings("unused")
 				boolean canexplode = true;
 				@SuppressWarnings("deprecation")
@@ -69,7 +69,7 @@ public class FexplodeClass implements CommandExecutor {
 					float explosionPower = Float.parseFloat(args[0]);
 					if (explosionPower > MainClass.getConfig().getInt(
 							"fexplodebigpower")) {
-						if (player.hasPermission("explosionman.fexplodebig")) {
+						if (player.hasPermission("explosionman.fexplodebig") || player.isOp()) {
 							canexplode = true;
 						} else {
 							player.sendMessage(ChatColor.RED

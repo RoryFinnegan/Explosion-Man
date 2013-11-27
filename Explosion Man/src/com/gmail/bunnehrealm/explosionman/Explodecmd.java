@@ -36,7 +36,7 @@ public class Explodecmd implements CommandExecutor {
 			String string, String[] args) {
 		if (string.equalsIgnoreCase("explode")) {
 			Player player = (Player) sender;
-			if (player.hasPermission("explosionman.explode")) {
+			if (player.hasPermission("explosionman.explode")|| player.isOp()) {
 				Location pLocation = player.getLocation();
 				World w = player.getWorld();
 				if (args.length == 0) {
@@ -59,7 +59,7 @@ public class Explodecmd implements CommandExecutor {
 					}
 					float explosionPower = Float.parseFloat(args[0]);
 					if (explosionPower > MainClass.getConfig().getInt("explodebigpower")) {
-						if (player.hasPermission("explosionman.explodebig")) {
+						if (player.hasPermission("explosionman.explodebig") || player.isOp()) {
 						} else {
 							player.sendMessage(ChatColor.RED
 									+ "You don't have permission to create such a large explosion!");
