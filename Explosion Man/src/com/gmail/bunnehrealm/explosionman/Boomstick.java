@@ -39,17 +39,20 @@ public class Boomstick implements Listener {
 		if (player.hasPermission("explosionman.boomstick")) {
 			@SuppressWarnings("deprecation")
 			int blockId = player.getItemInHand().getTypeId();
-			if (blockId == MainClass.getConfig().getInt("item")) {
+			if (blockId == MainClass.getConfig().getInt("boomitem")) {
 				Action a = e.getAction();
 				if (a.equals(Action.RIGHT_CLICK_AIR)) {
 					@SuppressWarnings("deprecation")
 					Block block = player.getTargetBlock(null, 200);
 					Location blocation = block.getLocation();
+					double pX = blocation.getX();
+					double pY = blocation.getY();
+					double pZ = blocation.getZ();
 					if(MainClass.getConfig().getBoolean("boomstickmsg")){
 						String explodemsg = MainClass.getConfig().getString("boomsticktext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
 						player.sendMessage(explodemsg);
 					}
-					player.getWorld().createExplosion(blocation, MainClass.getConfig().getInt("boompower"));
+					player.getWorld().createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("boompower"),MainClass.getConfig().getBoolean("boomfire"), MainClass.getConfig().getBoolean("boomblocks") );
 					if(player.hasPermission("explosionman.boomlightning")){
 						player.getWorld().strikeLightningEffect(blocation);
 					}
@@ -58,11 +61,14 @@ public class Boomstick implements Listener {
 					@SuppressWarnings("deprecation")
 					Block block = player.getTargetBlock(null, 200);
 					Location blocation = block.getLocation();
+					double pX = blocation.getX();
+					double pY = blocation.getY();
+					double pZ = blocation.getZ();
 					if(MainClass.getConfig().getBoolean("boomstickmsg")){
 						String explodemsg = MainClass.getConfig().getString("boomsticktext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
 						player.sendMessage(explodemsg);
 					}
-					player.getWorld().createExplosion(blocation, MainClass.getConfig().getInt("boompower"));
+					player.getWorld().createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("boompower"),MainClass.getConfig().getBoolean("boomfire"), MainClass.getConfig().getBoolean("boomblocks") );
 					if(player.hasPermission("explosionman.boomlightning")){
 						player.getWorld().strikeLightningEffect(blocation);
 					}

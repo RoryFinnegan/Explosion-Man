@@ -47,13 +47,15 @@ public class FexplodeClass implements CommandExecutor {
 				@SuppressWarnings("deprecation")
 				Block lookBlock = player.getTargetBlock(null, 200);
 				Location plocation = lookBlock.getLocation();
+				double pX = plocation.getX();
+				double pY = plocation.getY();
+				double pZ = plocation.getZ();
 				if (args.length == 0) {
 					if(MainClass.getConfig().getBoolean("fexplodemsg")){
 						String fexplodemsg = MainClass.getConfig().getString("fexplodetext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
 						player.sendMessage(fexplodemsg);
 					}
-					w.createExplosion(plocation,
-							MainClass.getConfig().getInt("fexplodepower"));
+					w.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("fexplodepower"),MainClass.getConfig().getBoolean("fexplodefire"), MainClass.getConfig().getBoolean("fexplodeblocks") );
 					if (player.hasPermission("explosionman.fexplodelightning")) {
 						w.strikeLightningEffect(plocation);
 					}
@@ -83,7 +85,7 @@ public class FexplodeClass implements CommandExecutor {
 							String fexplodemsg = MainClass.getConfig().getString("fexplodetext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
 							player.sendMessage(fexplodemsg);
 						}
-						w.createExplosion(plocation, explosionPower);
+						w.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("fexplodepower"),MainClass.getConfig().getBoolean("fexplodefire"), MainClass.getConfig().getBoolean("fexplodeblocks") );
 						if (player
 								.hasPermission("explosionman.fexplodelightning")) {
 							w.strikeLightningEffect(plocation);

@@ -38,13 +38,16 @@ public class Explodecmd implements CommandExecutor {
 			Player player = (Player) sender;
 			if (player.hasPermission("explosionman.explode")|| player.isOp()) {
 				Location pLocation = player.getLocation();
+				double pX = pLocation.getX();
+				double pY = pLocation.getY();
+				double pZ = pLocation.getZ();
 				World w = player.getWorld();
 				if (args.length == 0) {
 					if(MainClass.getConfig().getBoolean("explodemsg")){
 						String explodemsg = MainClass.getConfig().getString("explodetext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
 						player.sendMessage(explodemsg);
 					}
-					w.createExplosion(pLocation, MainClass.getConfig().getInt("explodepower"));
+					w.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("explodepower"),MainClass.getConfig().getBoolean("explodefire"), MainClass.getConfig().getBoolean("explodeblocks") );
 					if(player.hasPermission("explosionman.explodelightning")){
 						w.strikeLightningEffect(pLocation);
 					}
@@ -70,7 +73,7 @@ public class Explodecmd implements CommandExecutor {
 						String explodemsg = MainClass.getConfig().getString("explodetext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
 						player.sendMessage(explodemsg);
 					}
-					w.createExplosion(pLocation, explosionPower);
+					w.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("explodepower"),MainClass.getConfig().getBoolean("explodefire"), MainClass.getConfig().getBoolean("explodeblocks") );
 					if(player.hasPermission("explosionman.explodelightning")){
 						w.strikeLightningEffect(pLocation);
 					}
