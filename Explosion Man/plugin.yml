@@ -1,6 +1,6 @@
 name: Explosion Man
 main: com.gmail.bunnehrealm.explosionman.MainClass
-version: 1.4
+version: 1.5
 description: >
             Explosion Man Commands!
 commands:

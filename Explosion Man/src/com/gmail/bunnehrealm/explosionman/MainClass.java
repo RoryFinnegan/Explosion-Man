@@ -71,6 +71,9 @@ public class MainClass extends JavaPlugin{
 	 if(!this.getConfig().isSet("fexplodebigpower")){
 		 this.getConfig().set("fexplodebigpower", 50);
 	 }
+	 if(!this.getConfig().isSet("boomblocks")){
+		 this.getConfig().set("boomblocks", true);
+	 }
 	 if(!this.getConfig().isSet("boomitem")){
 		 this.getConfig().set("boomitem", 280);
 	 }
