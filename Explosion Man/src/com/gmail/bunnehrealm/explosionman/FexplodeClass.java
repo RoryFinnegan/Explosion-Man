@@ -85,7 +85,7 @@ public class FexplodeClass implements CommandExecutor {
 							String fexplodemsg = MainClass.getConfig().getString("fexplodetext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
 							player.sendMessage(fexplodemsg);
 						}
-						w.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("fexplodepower"),MainClass.getConfig().getBoolean("fexplodefire"), MainClass.getConfig().getBoolean("fexplodeblocks") );
+						w.createExplosion(pX, pY, pZ, explosionPower ,MainClass.getConfig().getBoolean("fexplodefire"), MainClass.getConfig().getBoolean("fexplodeblocks") );
 						if (player
 								.hasPermission("explosionman.fexplodelightning")) {
 							w.strikeLightningEffect(plocation);

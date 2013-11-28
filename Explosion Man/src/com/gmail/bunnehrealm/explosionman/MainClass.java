@@ -86,6 +86,12 @@ public class MainClass extends JavaPlugin{
 	 if(!this.getConfig().isSet("deathpower")){
 		 this.getConfig().set("deathpower", 4);
 	 }
+	 if(!this.getConfig().isSet("deathfire")){
+		 this.getConfig().set("deathfire", false);
+	 }
+	 if(!this.getConfig().isSet("deathblocks")){
+		 this.getConfig().set("deathblocks", true);
+	 }
 	 if(!this.getConfig().isSet("explodemsg")){
 		 this.getConfig().set("explodemsg", false);
 	 }

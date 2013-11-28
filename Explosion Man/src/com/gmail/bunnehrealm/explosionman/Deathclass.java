@@ -44,8 +44,11 @@ public class Deathclass implements Listener {
 			boolean willdie = MainClass.getConfig().getBoolean("death");
 			if(willdie = true){
 				Location pLocation = player.getLocation();
+				double pX = pLocation.getX();
+				double pY = pLocation.getY();
+				double pZ = pLocation.getZ();
 				World world = player.getWorld();
-				world.createExplosion(pLocation, MainClass.getConfig().getInt("deathpower"));
+				world.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("deathpower") ,MainClass.getConfig().getBoolean("deathfire"), MainClass.getConfig().getBoolean("deathblocks") );
 				}
 			
 		}
