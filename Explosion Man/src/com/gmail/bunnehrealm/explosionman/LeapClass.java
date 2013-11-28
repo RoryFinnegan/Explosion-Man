@@ -37,6 +37,10 @@ public class LeapClass implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if (string.equalsIgnoreCase("leap")) {
+			if(!(sender instanceof Player)){
+				MainClass.getLogger().info("That is a player only command!");
+			}
+		else if(sender instanceof Player){
 			Player player = (Player) sender;
 			Location pLocation = player.getLocation();
 			double pX = pLocation.getX();
@@ -84,6 +88,7 @@ public class LeapClass implements CommandExecutor {
 			else{
 				player.sendMessage(ChatColor.RED + "You cannot leap!");}
 		}
+			}
 		return false;
 	}
 

@@ -41,6 +41,10 @@ public class FexplodeClass implements CommandExecutor {
 		Player player = (Player) cs;
 		World w = Bukkit.getServer().getWorld("World");
 		if (string.equalsIgnoreCase("fexplode")) {
+			if(!(cs instanceof Player)){
+				MainClass.getLogger().info("That is a player only command!");
+			}
+		else if(cs instanceof Player){
 			if (player.hasPermission("explosionman.fexplode") || player.isOp()) {
 				@SuppressWarnings("unused")
 				boolean canexplode = true;
@@ -101,6 +105,7 @@ public class FexplodeClass implements CommandExecutor {
 						+ "You cannot make an explosion over there!");
 			}
 		}
+			}
 		return false;
 	}
 

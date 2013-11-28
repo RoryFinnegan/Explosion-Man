@@ -35,6 +35,10 @@ public class Explodecmd implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command label,
 			String string, String[] args) {
 		if (string.equalsIgnoreCase("explode")) {
+			if(!(sender instanceof Player)){
+				MainClass.getLogger().info("That is a player only command!");
+			}
+		else if(sender instanceof Player){
 			Player player = (Player) sender;
 			if (player.hasPermission("explosionman.explode")|| player.isOp()) {
 				Location pLocation = player.getLocation();
@@ -89,7 +93,9 @@ public class Explodecmd implements CommandExecutor {
 			
 			return false;
 		}
+		}
 		return false;
 
 	}
 }
+

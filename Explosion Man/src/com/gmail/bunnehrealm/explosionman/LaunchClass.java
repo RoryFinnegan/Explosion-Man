@@ -43,6 +43,10 @@ public class LaunchClass implements CommandExecutor {
 		double pZ = pLocation.getZ();
 		World w = player.getWorld();
 		if (string.equalsIgnoreCase("Launch")) {
+			if(!(cs instanceof Player)){
+				MainClass.getLogger().info("That is a player only command!");
+			}
+		else if(cs instanceof Player){
 			if (player.hasPermission("explosionman.launch") || player.isOp()) {
 				if (args.length == 0) {
 					w.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("launchpower"),MainClass.getConfig().getBoolean("launchfire"), MainClass.getConfig().getBoolean("launchblocks") );
@@ -66,7 +70,7 @@ public class LaunchClass implements CommandExecutor {
 								+ "Cannot allow you to use more than 10 in height!");
 						return false;
 					}
-					w.createExplosion(pX, pY, pZ,MainClass.getConfig().getInt("launchpower"), MainClass.getConfig().getBoolean("launchblocks") );
+					w.createExplosion(pX, pY, pZ,MainClass.getConfig().getInt("launchpower"), MainClass.getConfig().getBoolean("launchfire"), MainClass.getConfig().getBoolean("launchblocks") );
 					player.setVelocity(new Vector(0, Float.parseFloat(args[0]),
 							0));
 					if(MainClass.getConfig().getBoolean("launchmsg")){
@@ -81,6 +85,7 @@ public class LaunchClass implements CommandExecutor {
 				}			
 			}
 		}
+			}
 		return false;
 	}
 
