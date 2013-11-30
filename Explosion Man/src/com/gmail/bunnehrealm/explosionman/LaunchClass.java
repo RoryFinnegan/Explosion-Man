@@ -45,6 +45,7 @@ public class LaunchClass implements CommandExecutor {
 		if (string.equalsIgnoreCase("Launch")) {
 			if(!(cs instanceof Player)){
 				MainClass.getLogger().info("That is a player only command!");
+				return false;
 			}
 		else if(cs instanceof Player){
 			if (player.hasPermission("explosionman.launch") || player.isOp()) {

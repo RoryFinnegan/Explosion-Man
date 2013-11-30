@@ -37,6 +37,7 @@ public class Explodecmd implements CommandExecutor {
 		if (string.equalsIgnoreCase("explode")) {
 			if(!(sender instanceof Player)){
 				MainClass.getLogger().info("That is a player only command!");
+				return false;
 			}
 		else if(sender instanceof Player){
 			Player player = (Player) sender;

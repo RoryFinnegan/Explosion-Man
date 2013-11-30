@@ -43,6 +43,7 @@ public class FexplodeClass implements CommandExecutor {
 		if (string.equalsIgnoreCase("fexplode")) {
 			if(!(cs instanceof Player)){
 				MainClass.getLogger().info("That is a player only command!");
+				return false;
 			}
 		else if(cs instanceof Player){
 			if (player.hasPermission("explosionman.fexplode") || player.isOp()) {

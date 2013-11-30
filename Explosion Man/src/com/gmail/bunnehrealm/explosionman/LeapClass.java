@@ -39,6 +39,7 @@ public class LeapClass implements CommandExecutor {
 		if (string.equalsIgnoreCase("leap")) {
 			if(!(sender instanceof Player)){
 				MainClass.getLogger().info("That is a player only command!");
+				return false;
 			}
 		else if(sender instanceof Player){
 			Player player = (Player) sender;
