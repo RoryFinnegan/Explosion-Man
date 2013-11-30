@@ -28,6 +28,7 @@ public class MainClass extends JavaPlugin{
 	public LaunchClass launchCmd = new LaunchClass(this);
 	public LeapClass leapCmd = new LeapClass(this);
 	public LeapStick leapStick = new LeapStick(this);
+	public ExplodeKit explodeKit = new ExplodeKit(this);
  @Override
  public void onDisable(){
 	 getLogger().info("Explosion Man has been DISABLED!");
@@ -43,6 +44,7 @@ public class MainClass extends JavaPlugin{
 	 pm.registerEvents(this.deathListen, this);
 	 pm.registerEvents(this.leapStick, this);
 	 
+	 getCommand("explodekit").setExecutor(explodeKit);
 	 getCommand("leap").setExecutor(leapCmd);
 	 getCommand("explode").setExecutor(explodeCmd);
 	 getCommand("fexplode").setExecutor(fexplodeCmd);
