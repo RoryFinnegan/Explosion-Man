@@ -26,7 +26,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Explodecmd implements CommandExecutor {
+	public PreventDamage damageListen = new PreventDamage(this);
 	public MainClass MainClass;
+	public boolean god;
+	public Player theplayer;
 	public Explodecmd(MainClass mainClass) {
         this.MainClass = mainClass;
     }
@@ -41,6 +44,7 @@ public class Explodecmd implements CommandExecutor {
 			}
 		else if(sender instanceof Player){
 			Player player = (Player) sender;
+			theplayer = player;
 			if (player.hasPermission("explosionman.explode")|| player.isOp()) {
 				Location pLocation = player.getLocation();
 				double pX = pLocation.getX();
@@ -52,10 +56,12 @@ public class Explodecmd implements CommandExecutor {
 						String explodemsg = MainClass.getConfig().getString("explodetext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
 						player.sendMessage(explodemsg);
 					}
+					god = true;
 					w.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("explodepower"),MainClass.getConfig().getBoolean("explodefire"), MainClass.getConfig().getBoolean("explodeblocks") );
 					if(player.hasPermission("explosionman.explodelightning")){
 						w.strikeLightningEffect(pLocation);
 					}
+					god = false;
 				} else if (args.length == 1) {
 					try {
 						@SuppressWarnings("unused")
@@ -78,7 +84,9 @@ public class Explodecmd implements CommandExecutor {
 						String explodemsg = MainClass.getConfig().getString("explodetext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
 						player.sendMessage(explodemsg);
 					}
+					god = true;
 					w.createExplosion(pX, pY, pZ,explosionPower ,MainClass.getConfig().getBoolean("explodefire"), MainClass.getConfig().getBoolean("explodeblocks") );
+					god = false;
 					if(player.hasPermission("explosionman.explodelightning")){
 						w.strikeLightningEffect(pLocation);
 					}
@@ -98,5 +106,6 @@ public class Explodecmd implements CommandExecutor {
 		return false;
 
 	}
-}
+		
+	}
 

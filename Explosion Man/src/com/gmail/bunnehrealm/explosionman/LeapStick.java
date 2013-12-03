@@ -1,19 +1,18 @@
-
 /*Explosion Man for general explosions on Bukkit
-    Copyright (C) 2013  Rory Finnegan
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+ Copyright (C) 2013  Rory Finnegan
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package com.gmail.bunnehrealm.explosionman;
 
@@ -27,6 +26,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class LeapStick implements Listener {
 	public MainClass MainClass;
+	public PreventDamage damageListen = new PreventDamage(this);
+	public boolean god;
+	public Player theplayer;
 
 	public LeapStick(MainClass mainClass) {
 		this.MainClass = mainClass;
@@ -36,6 +38,7 @@ public class LeapStick implements Listener {
 	@EventHandler
 	public void onLeap(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
+		theplayer = player;
 		Action action = event.getAction();
 		if (player.hasPermission("explosionman.leapstick")) {
 			if (action.equals(Action.RIGHT_CLICK_AIR)) {
@@ -47,13 +50,50 @@ public class LeapStick implements Listener {
 				int blockID = player.getItemInHand().getTypeId();
 				if (blockID == MainClass.getConfig().getInt("leapstickid")) {
 					{
-						if(MainClass.getConfig().getBoolean("leapstickmsg")){
-							String fexplodemsg = MainClass.getConfig().getString("leapsticktxt").replaceAll("(&([a-f0-9]))", "\u00A7$2");
+						if (MainClass.getConfig().getBoolean("leapstickmsg")) {
+							String fexplodemsg = MainClass.getConfig()
+									.getString("leapsticktxt")
+									.replaceAll("(&([a-f0-9]))", "\u00A7$2");
 							player.sendMessage(fexplodemsg);
 						}
 						if (MainClass.getConfig()
 								.getBoolean("leapstickexlpode")) {
-							world.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("leapstartpower"),MainClass.getConfig().getBoolean("leapstickfire"), MainClass.getConfig().getBoolean("leapstickblocks") );}
+							god = true;
+							world.createExplosion(
+									pX,
+									pY,
+									pZ,
+									MainClass.getConfig().getInt(
+											"leapstartpower"),
+									MainClass.getConfig().getBoolean(
+											"leapstickfire"),
+									MainClass.getConfig().getBoolean(
+											"leapstickblocks"));
+						}
+						player.setVelocity(player
+								.getEyeLocation()
+								.getDirection()
+								.multiply(
+										MainClass.getConfig().getInt(
+												"leapdefault")));
+						god = false;
+					}
+				} else if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
+					if (blockID == MainClass.getConfig().getInt("leapstickid")) {
+						{
+							if (MainClass.getConfig().getBoolean(
+									"leapstickexlpode")) {
+								world.createExplosion(
+										pX,
+										pY,
+										pZ,
+										MainClass.getConfig().getInt(
+												"leapstickpower"),
+										MainClass.getConfig().getBoolean(
+												"leapstickfire"),
+										MainClass.getConfig().getBoolean(
+												"leapstickblocks"));
+							}
 							player.setVelocity(player
 									.getEyeLocation()
 									.getDirection()
@@ -62,23 +102,9 @@ public class LeapStick implements Listener {
 													"leapdefault")));
 						}
 					}
-				else if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
-					if (blockID == MainClass.getConfig().getInt("leapstickid")) {
-						{
-							if (MainClass.getConfig()
-									.getBoolean("leapstickexlpode")) {
-								world.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("leapstickpower"),MainClass.getConfig().getBoolean("leapstickfire"), MainClass.getConfig().getBoolean("leapstickblocks") ); }
-								player.setVelocity(player
-										.getEyeLocation()
-										.getDirection()
-										.multiply(
-												MainClass.getConfig().getInt(
-														"leapdefault")));
-							}
-						}}
-
-			} 
 				}
+
 			}
 		}
-
+	}
+}

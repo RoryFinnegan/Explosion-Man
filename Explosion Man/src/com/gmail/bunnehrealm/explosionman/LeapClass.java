@@ -26,11 +26,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class LeapClass implements CommandExecutor {
+	public PreventDamage damageListen = new PreventDamage(this);
 	public MainClass MainClass;
-
+	public boolean god;
+	public Player theplayer;
 	public LeapClass(MainClass mainClass) {
-		this.MainClass = mainClass;
-	}
+        this.MainClass = mainClass;
+    }
 
 
 	@Override
@@ -43,6 +45,7 @@ public class LeapClass implements CommandExecutor {
 			}
 		else if(sender instanceof Player){
 			Player player = (Player) sender;
+			theplayer = player;
 			Location pLocation = player.getLocation();
 			double pX = pLocation.getX();
 			double pY = pLocation.getY();
@@ -50,6 +53,7 @@ public class LeapClass implements CommandExecutor {
 			World world = player.getWorld();
 			if(player.hasPermission("explosionman.leap")){
 			if (args.length == 0) {
+				god = true;
 				if(MainClass.getConfig().getBoolean("leapmsg")){
 					String explodemsg = MainClass.getConfig().getString("leaptxt").replaceAll("(&([a-f0-9]))", "\u00A7$2");
 					player.sendMessage(explodemsg);
@@ -59,7 +63,7 @@ public class LeapClass implements CommandExecutor {
 				}
 				player.setVelocity(player.getEyeLocation().getDirection()
 						.multiply(MainClass.getConfig().getInt("leapdefault")));
-				
+				god = false;
 
 			} else if (args.length == 1) {
 				try {
@@ -79,7 +83,9 @@ public class LeapClass implements CommandExecutor {
 					player.sendMessage(explodemsg);
 				}
 				if (MainClass.getConfig().getBoolean("leapexlpode")) {
+					god = true;
 					world.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("leapstartpower"),MainClass.getConfig().getBoolean("leapfire"), MainClass.getConfig().getBoolean("leapblocks") );
+					god = false;
 				}
 				player.setVelocity(player.getEyeLocation().getDirection()
 						.multiply(Integer.parseInt(args[0])));
@@ -90,7 +96,6 @@ public class LeapClass implements CommandExecutor {
 				player.sendMessage(ChatColor.RED + "You cannot leap!");}
 		}
 			}
-		return false;
-	}
-
+return false;
 }
+	}

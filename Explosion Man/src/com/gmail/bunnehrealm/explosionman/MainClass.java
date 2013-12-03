@@ -25,10 +25,12 @@ public class MainClass extends JavaPlugin{
 	public Deathclass deathListen = new Deathclass(this);
 	public Explodecmd explodeCmd = new Explodecmd(this);
 	public FexplodeClass fexplodeCmd = new FexplodeClass(this);
+	public PreventDamage damageListen = new PreventDamage(this);
 	public LaunchClass launchCmd = new LaunchClass(this);
 	public LeapClass leapCmd = new LeapClass(this);
 	public LeapStick leapStick = new LeapStick(this);
 	public ExplodeKit explodeKit = new ExplodeKit(this);
+	public PreventDamage MoreListen = new PreventDamage(this);
  @Override
  public void onDisable(){
 	 getLogger().info("Explosion Man has been DISABLED!");
@@ -43,6 +45,7 @@ public class MainClass extends JavaPlugin{
 	 pm.registerEvents(this.boomListen, this);
 	 pm.registerEvents(this.deathListen, this);
 	 pm.registerEvents(this.leapStick, this);
+	 pm.registerEvents(this.damageListen, this);
 	 
 	 getCommand("explodekit").setExecutor(explodeKit);
 	 getCommand("leap").setExecutor(leapCmd);
@@ -50,10 +53,10 @@ public class MainClass extends JavaPlugin{
 	 getCommand("fexplode").setExecutor(fexplodeCmd);
 	 getCommand("launch").setExecutor(launchCmd);
 	 if(!this.getConfig().isSet("explodefire")){
-		 this.getConfig().set("explodefire", "Insert message here");
+		 this.getConfig().set("explodefire", false);
 	 }
 	 if(!this.getConfig().isSet("explodeblocks")){
-		 this.getConfig().set("exlodeblocks", false);
+		 this.getConfig().set("exlodeblocks", true);
 	 }
 	 if(!this.getConfig().isSet("explodepower")){
 		 this.getConfig().set("explodepower", 4);
@@ -176,8 +179,9 @@ public class MainClass extends JavaPlugin{
 		 this.getConfig().set("testms", "Insert message here");
 	 }
 	 if(!this.getConfig().isSet("Version")){
-		 this.getConfig().set("Version", "1.5 #(PLEASE DO NOT CHANGE)");
+		 this.getConfig().set("Version", "1.7 #(PLEASE DO NOT CHANGE)");
 	 }
 	 this.saveConfig();
  }
+
 }
