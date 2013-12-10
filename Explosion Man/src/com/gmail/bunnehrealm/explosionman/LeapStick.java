@@ -57,8 +57,7 @@ public class LeapStick implements Listener {
 					{
 						if (MainClass.getConfig().getBoolean("leapstickmsg")) {
 							String fexplodemsg = MainClass.getConfig()
-									.getString("leapsticktxt")
-									.replaceAll("(&([a-f0-9]))", "\u00A7$2");
+									.getString("leapsticktxt");
 							player.sendMessage(fexplodemsg);
 						}
 						if (MainClass.getConfig()

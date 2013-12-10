@@ -188,7 +188,7 @@ public class MainClass extends JavaPlugin {
 			this.getConfig().set("leapstickstartpower", 4);
 		}
 		if (!this.getConfig().isSet("leapstickmsg")) {
-			this.getConfig().set("leapstickmsg", true);
+			this.getConfig().set("leapstickmsg", false);
 		}
 		if (!this.getConfig().isSet("leapsticktxt")) {
 			this.getConfig().set("testms", "Insert message here");
