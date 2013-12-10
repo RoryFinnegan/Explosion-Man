@@ -17,6 +17,7 @@
 
 package com.gmail.bunnehrealm.explosionman;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -24,12 +25,19 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitScheduler;
 
 public class LeapClass implements CommandExecutor {
 	public PreventDamage damageListen = new PreventDamage(this);
 	public MainClass MainClass;
 	public boolean god;
 	public Player theplayer;
+	public boolean doDamage;
+	public int id;
+	public int id2;
+	public int id3;
+	public int id4;
+	private int damagecount;
 	public LeapClass(MainClass mainClass) {
         this.MainClass = mainClass;
     }
@@ -64,6 +72,25 @@ public class LeapClass implements CommandExecutor {
 				player.setVelocity(player.getEyeLocation().getDirection()
 						.multiply(MainClass.getConfig().getInt("leapdefault")));
 				god = false;
+				damagecount = 0;
+				BukkitScheduler scheduler = Bukkit.getServer()
+						.getScheduler();
+				id = scheduler.scheduleSyncRepeatingTask(MainClass,
+						new Runnable() {
+							@Override
+							public void run() {
+								damagecount++;
+								doDamage = true;
+								if (damagecount == 10) {
+									damagecount = 0;
+									doDamage = false;
+									Bukkit.getScheduler()
+											.cancelTask(id);
+								}
+
+							}
+
+						}, 0, 20L);
 
 			} else if (args.length == 1) {
 				try {
@@ -86,6 +113,25 @@ public class LeapClass implements CommandExecutor {
 					god = true;
 					world.createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("leapstartpower"),MainClass.getConfig().getBoolean("leapfire"), MainClass.getConfig().getBoolean("leapblocks") );
 					god = false;
+					damagecount = 0;
+					BukkitScheduler scheduler = Bukkit.getServer()
+							.getScheduler();
+					id2 = scheduler.scheduleSyncRepeatingTask(MainClass,
+							new Runnable() {
+								@Override
+								public void run() {
+									damagecount++;
+									doDamage = true;
+									if (damagecount == 10) {
+										damagecount = 0;
+										doDamage = false;
+										Bukkit.getScheduler()
+												.cancelTask(id2);
+									}
+
+								}
+
+							}, 0, 20L);
 				}
 				player.setVelocity(player.getEyeLocation().getDirection()
 						.multiply(Integer.parseInt(args[0])));

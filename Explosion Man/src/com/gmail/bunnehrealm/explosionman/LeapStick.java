@@ -16,6 +16,7 @@
 
 package com.gmail.bunnehrealm.explosionman;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -23,12 +24,16 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.scheduler.BukkitScheduler;
 
 public class LeapStick implements Listener {
 	public MainClass MainClass;
 	public PreventDamage damageListen = new PreventDamage(this);
 	public boolean god;
 	public Player theplayer;
+	public boolean doDamage;
+	private int damagecount;
+	private int id;
 
 	public LeapStick(MainClass mainClass) {
 		this.MainClass = mainClass;
@@ -77,6 +82,25 @@ public class LeapStick implements Listener {
 										MainClass.getConfig().getInt(
 												"leapdefault")));
 						god = false;
+						damagecount = 0;
+						BukkitScheduler scheduler = Bukkit.getServer()
+								.getScheduler();
+						id = scheduler.scheduleSyncRepeatingTask(MainClass,
+								new Runnable() {
+									@Override
+									public void run() {
+										damagecount++;
+										doDamage = true;
+										if (damagecount == 10) {
+											damagecount = 0;
+											doDamage = false;
+											Bukkit.getScheduler()
+													.cancelTask(id);
+										}
+
+									}
+
+								}, 0, 20L);
 					}
 				} else if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
 					if (blockID == MainClass.getConfig().getInt("leapstickid")) {

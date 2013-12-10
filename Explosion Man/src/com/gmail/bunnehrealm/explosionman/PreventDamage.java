@@ -53,12 +53,19 @@ public class PreventDamage implements Listener {
 	public PreventDamage(LaunchClass LaunchClass) {
 		this.LaunchClass = LaunchClass;
 	}
+	
 
 	@EventHandler
 	public void onPain(EntityDamageEvent e) {
 		if (e.getEntity() == (Entity) Explodecmd.theplayer || e.getEntity() == (Entity) LeapStick.theplayer || e.getEntity() == (Entity) LaunchClass.theplayer || e.getEntity() == (Entity) LeapClass.theplayer ) {
-			if(Explodecmd.god || LeapStick.god || LaunchClass.god || LeapClass.god){
+			if(Explodecmd.god || LeapStick.god || LaunchClass.god || LeapClass.god ){
 				e.setCancelled(true);
+			}
+			else if(LaunchClass.doDamage || LeapClass.doDamage || LeapStick.doDamage){
+				
+				if(e.getCause() == EntityDamageEvent.DamageCause.FALL){
+				e.setCancelled(true);
+				}
 			}
 			else{
 				e.setCancelled(false);

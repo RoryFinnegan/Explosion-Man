@@ -1,6 +1,6 @@
 name: Explosion Man
 main: com.gmail.bunnehrealm.explosionman.MainClass
-version: 1.6
+version: 1.7
 description: >
             Explosion Man Commands!
 commands:
@@ -14,3 +14,5 @@ commands:
     description: Makes you leap like a bunny
   explodekit:
     description: Gives the command user the explode kit
+  smokeexplode:
+    description: Creates an explosion and creates smoke around you! Usage - /smokeexplode
