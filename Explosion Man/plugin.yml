@@ -14,5 +14,5 @@ commands:
     description: Makes you leap like a bunny
   explodekit:
     description: Gives the command user the explode kit
-  smokeexplode:
-    description: Creates an explosion and creates smoke around you! Usage - /smokeexplode
+  setboomstick:
+    description: Sets the item id of the boomstick!

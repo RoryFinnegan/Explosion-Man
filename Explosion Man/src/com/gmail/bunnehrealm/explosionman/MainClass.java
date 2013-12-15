@@ -39,6 +39,7 @@ public class MainClass extends JavaPlugin {
 	public LeapStick leapStick = new LeapStick(this);
 	public ExplodeKit explodeKit = new ExplodeKit(this);
 	public PreventDamage MoreListen = new PreventDamage(this);
+	public SetBoomstick setBoomstick = new SetBoomstick(this);
 	public StopDrops dropListen = new StopDrops(this);
 
 	@Override
@@ -62,6 +63,7 @@ public class MainClass extends JavaPlugin {
 		getCommand("explodekit").setExecutor(explodeKit);
 		getCommand("leap").setExecutor(leapCmd);
 		getCommand("explode").setExecutor(explodeCmd);
+		getCommand("setboomstick").setExecutor(setBoomstick);
 		getCommand("fexplode").setExecutor(fexplodeCmd);
 		getCommand("launch").setExecutor(launchCmd);
 		if (!this.getConfig().isSet("dropblocks")) {
