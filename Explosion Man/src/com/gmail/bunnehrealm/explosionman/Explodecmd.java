@@ -24,6 +24,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.gmail.bunnehrealm.explosionman.Listeners.PreventDamage;
+
 public class Explodecmd implements CommandExecutor {
 	public PreventDamage damageListen = new PreventDamage(this);
 	public MainClass MainClass;

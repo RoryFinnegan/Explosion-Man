@@ -1,8 +1,11 @@
-package com.gmail.bunnehrealm.explosionman;
+package com.gmail.bunnehrealm.explosionman.Listeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
+
+import com.gmail.bunnehrealm.explosionman.Explodecmd;
+import com.gmail.bunnehrealm.explosionman.MainClass;
 
 public class StopDrops implements Listener {
 	public static MainClass MainClass;

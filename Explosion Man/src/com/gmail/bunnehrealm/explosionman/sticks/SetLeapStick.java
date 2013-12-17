@@ -14,12 +14,14 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.gmail.bunnehrealm.explosionman;
+package com.gmail.bunnehrealm.explosionman.sticks;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+
+import com.gmail.bunnehrealm.explosionman.MainClass;
 
 public class SetLeapStick implements CommandExecutor {
 	public MainClass MainClass;

@@ -27,7 +27,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import com.gmail.bunnehrealm.explosionman.MainClass;
-import com.gmail.bunnehrealm.explosionman.PreventDamage;
+import com.gmail.bunnehrealm.explosionman.Listeners.PreventDamage;
 
 public class LeapStick implements Listener {
 	public MainClass MainClass;

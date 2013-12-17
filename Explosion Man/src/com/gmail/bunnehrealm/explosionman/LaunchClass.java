@@ -27,6 +27,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.util.Vector;
 
+import com.gmail.bunnehrealm.explosionman.Listeners.PreventDamage;
+
 public class LaunchClass implements CommandExecutor {
 	public PreventDamage damageListen = new PreventDamage(this);
 	public int id;

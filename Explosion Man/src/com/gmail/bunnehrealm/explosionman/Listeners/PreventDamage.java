@@ -14,13 +14,17 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.gmail.bunnehrealm.explosionman;
+package com.gmail.bunnehrealm.explosionman.Listeners;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+import com.gmail.bunnehrealm.explosionman.Explodecmd;
+import com.gmail.bunnehrealm.explosionman.LaunchClass;
+import com.gmail.bunnehrealm.explosionman.LeapClass;
+import com.gmail.bunnehrealm.explosionman.MainClass;
 import com.gmail.bunnehrealm.explosionman.sticks.LeapStick;
 
 public class PreventDamage implements Listener {

@@ -22,8 +22,14 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.gmail.bunnehrealm.explosionman.Listeners.Deathclass;
+import com.gmail.bunnehrealm.explosionman.Listeners.PreventDamage;
+import com.gmail.bunnehrealm.explosionman.Listeners.PreventFlyKick;
+import com.gmail.bunnehrealm.explosionman.Listeners.StopDrops;
 import com.gmail.bunnehrealm.explosionman.sticks.Boomstick;
 import com.gmail.bunnehrealm.explosionman.sticks.LeapStick;
+import com.gmail.bunnehrealm.explosionman.sticks.SetBoomstick;
+import com.gmail.bunnehrealm.explosionman.sticks.SetLeapStick;
 
 public class MainClass extends JavaPlugin {
 

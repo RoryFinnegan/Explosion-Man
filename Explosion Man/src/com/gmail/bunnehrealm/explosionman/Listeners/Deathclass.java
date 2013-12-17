@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.gmail.bunnehrealm.explosionman;
+package com.gmail.bunnehrealm.explosionman.Listeners;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -23,6 +23,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+
+import com.gmail.bunnehrealm.explosionman.MainClass;
 
 public class Deathclass implements Listener {
 	public static MainClass MainClass;
