@@ -39,6 +39,7 @@ public class MainClass extends JavaPlugin {
 	public LeapStick leapStick = new LeapStick(this);
 	public ExplodeKit explodeKit = new ExplodeKit(this);
 	public PreventDamage MoreListen = new PreventDamage(this);
+	public PreventFlyKick flyListen = new PreventFlyKick(this);
 	public SetBoomstick setBoomstick = new SetBoomstick(this);
 	public SetLeapStick setLeapStick = new SetLeapStick(this);
 	public StopDrops dropListen = new StopDrops(this);
@@ -58,6 +59,7 @@ public class MainClass extends JavaPlugin {
 		pm.registerEvents(this.boomListen, this);
 		pm.registerEvents(this.deathListen, this);
 		pm.registerEvents(this.leapStick, this);
+		pm.registerEvents(this.flyListen, this);
 		pm.registerEvents(this.damageListen, this);
 		pm.registerEvents(this.dropListen, this);
 
