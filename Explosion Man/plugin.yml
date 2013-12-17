@@ -16,3 +16,5 @@ commands:
     description: Gives the command user the explode kit
   setboomstick:
     description: Sets the item id of the boomstick!
+  setleapstick:
+    description: Sets the item id of the leapstick!
