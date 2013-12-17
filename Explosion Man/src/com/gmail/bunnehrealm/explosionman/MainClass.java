@@ -22,6 +22,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.gmail.bunnehrealm.explosionman.sticks.Boomstick;
+import com.gmail.bunnehrealm.explosionman.sticks.LeapStick;
+
 public class MainClass extends JavaPlugin {
 
 	public String fileName;

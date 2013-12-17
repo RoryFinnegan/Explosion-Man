@@ -3,6 +3,8 @@ package com.gmail.bunnehrealm.explosionman;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
 
+import com.gmail.bunnehrealm.explosionman.sticks.LeapStick;
+
 public class PreventFlyKick implements Listener{
 	public static MainClass MainClass;
 

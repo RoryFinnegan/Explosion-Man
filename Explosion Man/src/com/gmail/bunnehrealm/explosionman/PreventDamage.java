@@ -21,6 +21,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+import com.gmail.bunnehrealm.explosionman.sticks.LeapStick;
+
 public class PreventDamage implements Listener {
 	public static MainClass MainClass;
 

@@ -14,7 +14,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.gmail.bunnehrealm.explosionman;
+package com.gmail.bunnehrealm.explosionman.sticks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -25,6 +25,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitScheduler;
+
+import com.gmail.bunnehrealm.explosionman.MainClass;
+import com.gmail.bunnehrealm.explosionman.PreventDamage;
 
 public class LeapStick implements Listener {
 	public MainClass MainClass;

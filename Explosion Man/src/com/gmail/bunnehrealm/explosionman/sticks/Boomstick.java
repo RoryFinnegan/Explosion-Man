@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package com.gmail.bunnehrealm.explosionman;
+package com.gmail.bunnehrealm.explosionman.sticks;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -24,6 +24,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+
+import com.gmail.bunnehrealm.explosionman.MainClass;
 
 public class Boomstick implements Listener {
 	public MainClass MainClass;
