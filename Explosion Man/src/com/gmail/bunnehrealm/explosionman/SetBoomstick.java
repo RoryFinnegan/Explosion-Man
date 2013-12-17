@@ -48,6 +48,7 @@ public class SetBoomstick implements CommandExecutor {
 
 					MainClass.getConfig().set("boomitem",
 							Integer.parseInt(args[0]));
+					MainClass.saveConfig();
 					cs.sendMessage(ChatColor.GOLD + "SET!");
 				} else if (args.length > 1) {
 					cs.sendMessage(ChatColor.RED + "The proper usage is "
