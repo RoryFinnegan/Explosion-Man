@@ -18,6 +18,11 @@ package com.gmail.bunnehrealm.explosionman;
 
 import java.io.File;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -32,11 +37,11 @@ import com.gmail.bunnehrealm.explosionman.sticks.SetBoomstick;
 import com.gmail.bunnehrealm.explosionman.sticks.SetLeapStick;
 
 public class MainClass extends JavaPlugin {
-
+	
+	public File playersFile;
+	public FileConfiguration players;
 	public String fileName;
 	public JavaPlugin plugin;
-	public File configFile;
-	public FileConfiguration fileConfiguration;
 	
 	public Boomstick boomListen = new Boomstick(this);
 	public Deathclass deathListen = new Deathclass(this);
@@ -52,11 +57,12 @@ public class MainClass extends JavaPlugin {
 	public SetBoomstick setBoomstick = new SetBoomstick(this);
 	public SetLeapStick setLeapStick = new SetLeapStick(this);
 	public StopDrops dropListen = new StopDrops(this);
+	public MyBoom myBoom = new MyBoom(this);
 
 	@Override
 	public void onDisable() {
 		getLogger().info("Explosion Man has been DISABLED!");
-
+		savePlayers();
 	}
 
 	@Override
@@ -72,6 +78,7 @@ public class MainClass extends JavaPlugin {
 		pm.registerEvents(this.damageListen, this);
 		pm.registerEvents(this.dropListen, this);
 
+		getCommand("myboom").setExecutor(myBoom);
 		getCommand("explodekit").setExecutor(explodeKit);
 		getCommand("leap").setExecutor(leapCmd);
 		getCommand("explode").setExecutor(explodeCmd);
@@ -79,6 +86,17 @@ public class MainClass extends JavaPlugin {
 		getCommand("setleapstick").setExecutor(setLeapStick);
 		getCommand("fexplode").setExecutor(fexplodeCmd);
 		getCommand("launch").setExecutor(launchCmd);
+		
+		try{
+			firstRun();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		playersFile = new File(getDataFolder(), "players.yml");
+		players = new YamlConfiguration();
+		loadPlayers();
+		
 		if (!this.getConfig().isSet("dropblocks")) {
 			this.getConfig().set("dropblocks", true);
 		}
@@ -213,4 +231,39 @@ public class MainClass extends JavaPlugin {
 		}
 		this.saveConfig();
 	}
+	private void firstRun() throws Exception{
+		if(!playersFile.exists()){
+			playersFile.getParentFile().mkdirs();
+			playersFile.createNewFile();
+		}
+	}
+	private void copy(InputStream in, File file) {
+        try {
+            OutputStream out = new FileOutputStream(file);
+            byte[] speed = new byte[1024];
+            int dist;
+            while((dist=in.read(speed))>0){
+                out.write(speed,0,dist);
+            }
+            out.close();
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+	public void loadPlayers() {
+        try {
+            players.load(playersFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+	public void savePlayers(){
+		try{
+		players.save(playersFile);
+	}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+}
 }

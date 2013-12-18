@@ -18,3 +18,5 @@ commands:
     description: Sets the item id of the boomstick!
   setleapstick:
     description: Sets the item id of the leapstick!
+  myboom:
+    description: Allows player to set their own boomstick!
