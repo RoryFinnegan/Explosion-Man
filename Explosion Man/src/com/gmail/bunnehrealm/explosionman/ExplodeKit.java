@@ -44,17 +44,17 @@ public class ExplodeKit implements CommandExecutor {
 		ItemStack leap = new ItemStack(MainClass.getConfig().getInt(
 				"leapstickid"), 1);
 		@SuppressWarnings("deprecation")
-		ItemStack boom = new ItemStack(MainClass.getConfig().getInt("item"), 1);
+		ItemStack boom = new ItemStack(MainClass.getConfig().getInt("boomitem"), 1);
 		if (string.equalsIgnoreCase("explodekit")) {
 			if (player.hasPermission("explosionman.kit") || player.isOp()) {
 				ItemMeta loreleap = leap.getItemMeta();
 				ItemMeta loreboom = boom.getItemMeta();
-				loreleap.setDisplayName(ChatColor.RED + "Leap Tool");
+
 				ArrayList<String> leaplore = new ArrayList<String>();
 				leaplore.add(ChatColor.DARK_PURPLE
 						+ "RightClick to launch that way!");
 				loreleap.setLore(leaplore);
-				loreboom.setDisplayName(ChatColor.RED + "Leap Tool");
+				loreleap.setDisplayName(ChatColor.RED + "Leap Tool");
 				ArrayList<String> boomlore = new ArrayList<String>();
 				boomlore.add(ChatColor.DARK_PURPLE
 						+ "RightClick to blow that up!");

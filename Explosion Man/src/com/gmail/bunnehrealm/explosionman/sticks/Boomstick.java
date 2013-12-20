@@ -13,7 +13,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package com.gmail.bunnehrealm.explosionman.sticks;
 
@@ -31,51 +31,116 @@ public class Boomstick implements Listener {
 	public MainClass MainClass;
 
 	public Boomstick(MainClass mainClass) {
-        this.MainClass = mainClass;
-    }
+		this.MainClass = mainClass;
+	}
 
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
 
 		Player player = e.getPlayer();
 		if (player.hasPermission("explosionman.boomstick")) {
-			@SuppressWarnings("deprecation")
-			int blockId = player.getItemInHand().getTypeId();
-			if (blockId == MainClass.getConfig().getInt("boomitem")) {
-				Action a = e.getAction();
-				if (a.equals(Action.RIGHT_CLICK_AIR)) {
+			if (MainClass.players.getString("players." + player.getName()
+					+ ".settings.boomstickid") == null) {
+				@SuppressWarnings("deprecation")
+				int blockId = player.getItemInHand().getTypeId();
+				if (blockId == MainClass.getConfig().getInt("boomitem")) {
+					Action a = e.getAction();
+					if (a.equals(Action.RIGHT_CLICK_AIR)) {
+						@SuppressWarnings("deprecation")
+						Block block = player.getTargetBlock(null, 200);
+						Location blocation = block.getLocation();
+						double pX = blocation.getX();
+						double pY = blocation.getY();
+						double pZ = blocation.getZ();
+						if (MainClass.getConfig().getBoolean("boomstickmsg")) {
+							String explodemsg = MainClass.getConfig()
+									.getString("boomsticktext")
+									.replaceAll("(&([a-f0-9]))", "\u00A7$2");
+							player.sendMessage(explodemsg);
+						}
+						player.getWorld().createExplosion(pX, pY, pZ,
+								MainClass.getConfig().getInt("boompower"),
+								MainClass.getConfig().getBoolean("boomfire"),
+								MainClass.getConfig().getBoolean("boomblocks"));
+						if (player.hasPermission("explosionman.boomlightning")) {
+							player.getWorld().strikeLightningEffect(blocation);
+						}
+				} else if (a.equals(Action.RIGHT_CLICK_BLOCK)) {
 					@SuppressWarnings("deprecation")
 					Block block = player.getTargetBlock(null, 200);
 					Location blocation = block.getLocation();
 					double pX = blocation.getX();
 					double pY = blocation.getY();
 					double pZ = blocation.getZ();
-					if(MainClass.getConfig().getBoolean("boomstickmsg")){
-						String explodemsg = MainClass.getConfig().getString("boomsticktext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
+					if (MainClass.getConfig().getBoolean("boomstickmsg")) {
+						String explodemsg = MainClass.getConfig()
+								.getString("boomsticktext")
+								.replaceAll("(&([a-f0-9]))", "\u00A7$2");
 						player.sendMessage(explodemsg);
 					}
-					player.getWorld().createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("boompower"),MainClass.getConfig().getBoolean("boomfire"), MainClass.getConfig().getBoolean("boomblocks") );
-					if(player.hasPermission("explosionman.boomlightning")){
+					player.getWorld().createExplosion(pX, pY, pZ,
+							MainClass.getConfig().getInt("boompower"),
+							MainClass.getConfig().getBoolean("boomfire"),
+							MainClass.getConfig().getBoolean("boomblocks"));
+					if (player.hasPermission("explosionman.boomlightning")) {
 						player.getWorld().strikeLightningEffect(blocation);
 					}
 				}
-				else if (a.equals(Action.RIGHT_CLICK_BLOCK)) {
+				}
+		}
+			else if(MainClass.players.getString("players." + player.getName()
+					+ ".settings.boomstickid") != null){
+				@SuppressWarnings("deprecation")
+				int blockId = player.getItemInHand().getTypeId();
+				int tool = Integer.parseInt(MainClass.players.getString("players." + player.getName()
+						+ ".settings.boomstickid"));
+				
+				if (blockId == tool) {
+					Action a = e.getAction();
+					if (a.equals(Action.RIGHT_CLICK_AIR)) {
+						@SuppressWarnings("deprecation")
+						Block block = player.getTargetBlock(null, 200);
+						Location blocation = block.getLocation();
+						double pX = blocation.getX();
+						double pY = blocation.getY();
+						double pZ = blocation.getZ();
+						if (MainClass.getConfig().getBoolean("boomstickmsg")) {
+							String explodemsg = MainClass.getConfig()
+									.getString("boomsticktext")
+									.replaceAll("(&([a-f0-9]))", "\u00A7$2");
+							player.sendMessage(explodemsg);
+						}
+						player.getWorld().createExplosion(pX, pY, pZ,
+								MainClass.getConfig().getInt("boompower"),
+								MainClass.getConfig().getBoolean("boomfire"),
+								MainClass.getConfig().getBoolean("boomblocks"));
+						if (player.hasPermission("explosionman.boomlightning")) {
+							player.getWorld().strikeLightningEffect(blocation);
+						}
+				} else if (a.equals(Action.RIGHT_CLICK_BLOCK)) {
 					@SuppressWarnings("deprecation")
 					Block block = player.getTargetBlock(null, 200);
 					Location blocation = block.getLocation();
 					double pX = blocation.getX();
 					double pY = blocation.getY();
 					double pZ = blocation.getZ();
-					if(MainClass.getConfig().getBoolean("boomstickmsg")){
-						String explodemsg = MainClass.getConfig().getString("boomsticktext").replaceAll("(&([a-f0-9]))", "\u00A7$2");
+					if (MainClass.getConfig().getBoolean("boomstickmsg")) {
+						String explodemsg = MainClass.getConfig()
+								.getString("boomsticktext")
+								.replaceAll("(&([a-f0-9]))", "\u00A7$2");
 						player.sendMessage(explodemsg);
 					}
-					player.getWorld().createExplosion(pX, pY, pZ, MainClass.getConfig().getInt("boompower"),MainClass.getConfig().getBoolean("boomfire"), MainClass.getConfig().getBoolean("boomblocks") );
-					if(player.hasPermission("explosionman.boomlightning")){
+					player.getWorld().createExplosion(pX, pY, pZ,
+							MainClass.getConfig().getInt("boompower"),
+							MainClass.getConfig().getBoolean("boomfire"),
+							MainClass.getConfig().getBoolean("boomblocks"));
+					if (player.hasPermission("explosionman.boomlightning")) {
 						player.getWorld().strikeLightningEffect(blocation);
 					}
 				}
 			}
-		}
 	}
+		
+	}
+		}
 }

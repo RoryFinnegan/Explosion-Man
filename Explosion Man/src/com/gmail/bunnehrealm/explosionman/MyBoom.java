@@ -35,10 +35,15 @@ public class MyBoom implements CommandExecutor {
 									+ "/myboom [id]");
 							return false;
 						}
-
-						MainClass.players.addDefault("players." + player.getName()
+						if(args[0].equals("0")){
+							MainClass.players.set("players." + player.getName()
+									+ ".settings.boomstickid", null);
+							return false;
+						}
+						else
+						MainClass.players.set("players." + player.getName()
 								+ ".settings.boomstickid", args[0]);
-						player.saveData();
+						MainClass.savePlayers();
 						player.sendMessage(ChatColor.GOLD + "Set!");
 					}
 					else{

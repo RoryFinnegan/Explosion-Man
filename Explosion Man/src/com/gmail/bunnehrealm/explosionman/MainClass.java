@@ -17,11 +17,8 @@
 package com.gmail.bunnehrealm.explosionman;
 
 import java.io.File;
-
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -62,7 +59,11 @@ public class MainClass extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		getLogger().info("Explosion Man has been DISABLED!");
+		if(playersFile.exists())
 		savePlayers();
+		else{
+			return;
+		}
 	}
 
 	@Override
@@ -87,14 +88,16 @@ public class MainClass extends JavaPlugin {
 		getCommand("fexplode").setExecutor(fexplodeCmd);
 		getCommand("launch").setExecutor(launchCmd);
 		
+		playersFile = new File(getDataFolder(), "players.yml");
+		players = new YamlConfiguration();
+		
 		try{
 			firstRun();
 		}
 		catch(Exception e){
-			e.printStackTrace();
+			return;
 		}
-		playersFile = new File(getDataFolder(), "players.yml");
-		players = new YamlConfiguration();
+
 		loadPlayers();
 		
 		if (!this.getConfig().isSet("dropblocks")) {
@@ -233,29 +236,16 @@ public class MainClass extends JavaPlugin {
 	}
 	private void firstRun() throws Exception{
 		if(!playersFile.exists()){
+			getLogger().info("Creating a players.yml file");
 			playersFile.getParentFile().mkdirs();
 			playersFile.createNewFile();
 		}
 	}
-	private void copy(InputStream in, File file) {
-        try {
-            OutputStream out = new FileOutputStream(file);
-            byte[] speed = new byte[1024];
-            int dist;
-            while((dist=in.read(speed))>0){
-                out.write(speed,0,dist);
-            }
-            out.close();
-            in.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 	public void loadPlayers() {
         try {
             players.load(playersFile);
         } catch (Exception e) {
-            e.printStackTrace();
+            return;
         }
     }
 	public void savePlayers(){
@@ -263,7 +253,7 @@ public class MainClass extends JavaPlugin {
 		players.save(playersFile);
 	}
 		catch(IOException e){
-			e.printStackTrace();
+			return;
 		}
 }
 }
