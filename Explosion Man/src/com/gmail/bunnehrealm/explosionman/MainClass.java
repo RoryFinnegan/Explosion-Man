@@ -54,7 +54,9 @@ public class MainClass extends JavaPlugin {
 	public SetBoomstick setBoomstick = new SetBoomstick(this);
 	public SetLeapStick setLeapStick = new SetLeapStick(this);
 	public StopDrops dropListen = new StopDrops(this);
+	public MyLeap myLeap = new MyLeap(this);
 	public MyBoom myBoom = new MyBoom(this);
+	
 
 	@Override
 	public void onDisable() {
@@ -86,7 +88,9 @@ public class MainClass extends JavaPlugin {
 		getCommand("setboomstick").setExecutor(setBoomstick);
 		getCommand("setleapstick").setExecutor(setLeapStick);
 		getCommand("fexplode").setExecutor(fexplodeCmd);
+		getCommand("myleap").setExecutor(myLeap);
 		getCommand("launch").setExecutor(launchCmd);
+		
 		
 		playersFile = new File(getDataFolder(), "players.yml");
 		players = new YamlConfiguration();
@@ -233,6 +237,7 @@ public class MainClass extends JavaPlugin {
 			this.getConfig().set("Version", "1.7 #(PLEASE DO NOT CHANGE)");
 		}
 		this.saveConfig();
+		this.savePlayers();
 	}
 	private void firstRun() throws Exception{
 		if(!playersFile.exists()){

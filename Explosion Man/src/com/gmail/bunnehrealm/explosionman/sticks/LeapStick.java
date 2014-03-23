@@ -56,65 +56,111 @@ public class LeapStick implements Listener {
 				double pZ = pLocation.getZ();
 				World world = event.getPlayer().getWorld();
 				int blockID = player.getItemInHand().getTypeId();
-				if (blockID == MainClass.getConfig().getInt("leapstickid")) {
-					{
-						if (MainClass.getConfig().getBoolean("leapstickmsg")) {
-							String fexplodemsg = MainClass.getConfig()
-									.getString("leapsticktxt");
-							player.sendMessage(fexplodemsg);
-						}
-						if (MainClass.getConfig()
-								.getBoolean("leapstickexlpode")) {
-							god = true;
-							world.createExplosion(
-									pX,
-									pY,
-									pZ,
-									MainClass.getConfig().getInt(
-											"leapstartpower"),
-									MainClass.getConfig().getBoolean(
-											"leapstickfire"),
-									MainClass.getConfig().getBoolean(
-											"leapstickblocks"));
-						}
-						player.setVelocity(player
-								.getEyeLocation()
-								.getDirection()
-								.multiply(
-										MainClass.getConfig().getInt(
-												"leapdefault")));
-						god = false;
-						damagecount = 0;
-						BukkitScheduler scheduler = Bukkit.getServer()
-								.getScheduler();
-						id = scheduler.scheduleSyncRepeatingTask(MainClass,
-								new Runnable() {
-									@Override
-									public void run() {
-										damagecount++;
-										doDamage = true;
-										if (damagecount == 10) {
-											damagecount = 0;
-											doDamage = false;
-											Bukkit.getScheduler()
-													.cancelTask(id);
-										}
-
-									}
-
-								}, 0, 20L);
-					}
-				} else if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
-					if (blockID == MainClass.getConfig().getInt("leapstickid")) {
+				if (MainClass.players.getString("players." + player.getName()
+						+ ".settings.leapstickid") != null) {
+					player.sendMessage("id = " + MainClass.players.getString("players." + player.getName()
+							+ ".settings.leapstickid"));
+					player.sendMessage("not null");
+					int tool = MainClass.players.getInt("players." + player.getName() + ".leapstickid");
+					player.sendMessage("Tool found");
+					player.sendMessage(Integer.toString(blockID));
+					if (blockID == tool) {
 						{
+							player.sendMessage("initiate");
+							if (MainClass.getConfig()
+									.getBoolean("leapstickmsg")) {
+								String fexplodemsg = MainClass.getConfig()
+										.getString("leapsticktxt");
+								player.sendMessage(fexplodemsg);
+							}
 							if (MainClass.getConfig().getBoolean(
 									"leapstickexlpode")) {
+								god = true;
 								world.createExplosion(
 										pX,
 										pY,
 										pZ,
 										MainClass.getConfig().getInt(
-												"leapstickpower"),
+												"leapstartpower"),
+										MainClass.getConfig().getBoolean(
+												"leapstickfire"),
+										MainClass.getConfig().getBoolean(
+												"leapstickblocks"));
+							}
+							player.sendMessage("leap");
+							player.setVelocity(player
+									.getEyeLocation()
+									.getDirection()
+									.multiply(
+											MainClass.getConfig().getInt(
+													"leapdefault")));
+							player.sendMessage("done leap");
+							god = false;
+							damagecount = 0;
+							BukkitScheduler scheduler = Bukkit.getServer()
+									.getScheduler();
+							id = scheduler.scheduleSyncRepeatingTask(MainClass,
+									new Runnable() {
+										@Override
+										public void run() {
+											damagecount++;
+											doDamage = true;
+											if (damagecount == 10) {
+												damagecount = 0;
+												doDamage = false;
+												Bukkit.getScheduler()
+														.cancelTask(id);
+											}
+
+										}
+
+									}, 0, 20L);
+						}
+					} else if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
+						if (blockID == tool) {
+							{
+								if (MainClass.getConfig().getBoolean(
+										"leapstickexlpode")) {
+									world.createExplosion(
+											pX,
+											pY,
+											pZ,
+											MainClass.getConfig().getInt(
+													"leapstickpower"),
+											MainClass.getConfig().getBoolean(
+													"leapstickfire"),
+											MainClass.getConfig().getBoolean(
+													"leapstickblocks"));
+								}
+								player.setVelocity(player
+										.getEyeLocation()
+										.getDirection()
+										.multiply(
+												MainClass.getConfig().getInt(
+														"leapdefault")));
+							}
+						}
+					}
+				} 
+				else if (MainClass.players.getString("players."
+						+ player.getName() + ".settings.leapstickid") == null) {
+					if (blockID == MainClass.getConfig().getInt("leapstickid")) {
+						{
+							if (MainClass.getConfig()
+									.getBoolean("leapstickmsg")) {
+								String fexplodemsg = MainClass.getConfig()
+										.getString("leapsticktxt");
+								player.sendMessage(fexplodemsg);
+							}
+							if (MainClass.getConfig().getBoolean(
+									"leapstickexlpode")) {
+								god = true;
+								world.createExplosion(
+										pX,
+										pY,
+										pZ,
+										MainClass.getConfig().getInt(
+												"leapstartpower"),
 										MainClass.getConfig().getBoolean(
 												"leapstickfire"),
 										MainClass.getConfig().getBoolean(
@@ -126,10 +172,54 @@ public class LeapStick implements Listener {
 									.multiply(
 											MainClass.getConfig().getInt(
 													"leapdefault")));
+							god = false;
+							damagecount = 0;
+							BukkitScheduler scheduler = Bukkit.getServer()
+									.getScheduler();
+							id = scheduler.scheduleSyncRepeatingTask(MainClass,
+									new Runnable() {
+										@Override
+										public void run() {
+											damagecount++;
+											doDamage = true;
+											if (damagecount == 10) {
+												damagecount = 0;
+												doDamage = false;
+												Bukkit.getScheduler()
+														.cancelTask(id);
+											}
+
+										}
+
+									}, 0, 20L);
+						}
+					} else if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
+						if (blockID == MainClass.getConfig().getInt(
+								"leapstickid")) {
+							{
+								if (MainClass.getConfig().getBoolean(
+										"leapstickexlpode")) {
+									world.createExplosion(
+											pX,
+											pY,
+											pZ,
+											MainClass.getConfig().getInt(
+													"leapstickpower"),
+											MainClass.getConfig().getBoolean(
+													"leapstickfire"),
+											MainClass.getConfig().getBoolean(
+													"leapstickblocks"));
+								}
+								player.setVelocity(player
+										.getEyeLocation()
+										.getDirection()
+										.multiply(
+												MainClass.getConfig().getInt(
+														"leapdefault")));
+							}
 						}
 					}
 				}
-
 			}
 		}
 	}

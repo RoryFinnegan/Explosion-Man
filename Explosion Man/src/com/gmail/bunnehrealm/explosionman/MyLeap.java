@@ -6,10 +6,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class MyBoom implements CommandExecutor {
+public class MyLeap implements CommandExecutor {
 	public MainClass MainClass;
 
-	public MyBoom(MainClass MainClass) {
+	public MyLeap(MainClass MainClass) {
 		this.MainClass = MainClass;
 	}
 
@@ -17,15 +17,15 @@ public class MyBoom implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender cs, Command cmd, String string,
 			String[] args) {
-		if (string.equalsIgnoreCase("myboom")) {
+		if (string.equalsIgnoreCase("myleap")) {
 			if (!(cs instanceof Player)) {
 				cs.sendMessage("This is a player only command!");
 			} else {
 				Player player = (Player) cs;
-				if (player.hasPermission("explosionman.myboom")|| player.isOp()) {
+				if (player.hasPermission("explosionman.myleap")|| player.isOp()) {
 					if (args.length == 0) {
 						MainClass.players.set("players." + player.getName()
-								+ ".settings.boomstickid", player.getItemInHand().getTypeId());
+								+ ".settings.leapstickid", player.getItemInHand().getTypeId());
 						MainClass.savePlayers();
 						player.sendMessage(ChatColor.GOLD + "Set!");
 					} else if (args.length == 1) {
@@ -35,24 +35,24 @@ public class MyBoom implements CommandExecutor {
 						} catch (NumberFormatException c) {
 							cs.sendMessage(ChatColor.RED
 									+ "The proper usage is " + ChatColor.AQUA
-									+ "/myboom [id]");
+									+ "/myleap [id]");
 							return false;
 						}
 						if(args[0].equals("0")){
 							MainClass.players.set("players." + player.getName()
-									+ ".settings.boomstickid", null);
+									+ ".settings.leapstickid", null);
 							return false;
 						}
 						else
 						MainClass.players.set("players." + player.getName()
-								+ ".settings.boomstickid", args[0]);
+								+ ".settings.leapstickid", args[0]);
 						MainClass.savePlayers();
 						player.sendMessage(ChatColor.GOLD + "Set!");
 					}
 					else{
 						cs.sendMessage(ChatColor.RED
 								+ "The proper usage is " + ChatColor.AQUA
-								+ "/myboom [id]");
+								+ "/myleap [id]");
 						return false;
 					}
 				}
