@@ -58,12 +58,8 @@ public class LeapStick implements Listener {
 				int blockID = player.getItemInHand().getTypeId();
 				if (MainClass.players.getString("players." + player.getName()
 						+ ".settings.leapstickid") != null) {
-					player.sendMessage("id = " + MainClass.players.getString("players." + player.getName()
-							+ ".settings.leapstickid"));
-					player.sendMessage("not null");
-					int tool = MainClass.players.getInt("players." + player.getName() + ".leapstickid");
-					player.sendMessage("Tool found");
-					player.sendMessage(Integer.toString(blockID));
+					int tool = MainClass.players.getInt("players."
+							+ player.getName() + ".leapstickid");
 					if (blockID == tool) {
 						{
 							player.sendMessage("initiate");
@@ -141,8 +137,7 @@ public class LeapStick implements Listener {
 							}
 						}
 					}
-				} 
-				else if (MainClass.players.getString("players."
+				} else if (MainClass.players.getString("players."
 						+ player.getName() + ".settings.leapstickid") == null) {
 					if (blockID == MainClass.getConfig().getInt("leapstickid")) {
 						{
